@@ -1,4 +1,4 @@
-# 🐾 API de Usuários
+# 👤 API de Usuários (admin, coordenador, usuario)
 
 Esta API permite o cadastro e autenticação de usuários. Abaixo está a documentação completa para utilizar todos os endpoints, incluindo exemplos de uso via Postman.
 
