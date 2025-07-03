@@ -6,6 +6,11 @@ const usuarioSchema = new mongoose.Schema({
     email: String,
     password: String,
     phone: String,
+    role: {
+        type: String,
+        enum: ['admin', 'coordenador', 'usuario'],
+        default: 'usuario'
+    },
     createdAt: {
         type: String,
         default: () => moment().format('YYYY-MM-DD HH:mm:ss')
