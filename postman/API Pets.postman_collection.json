@@ -1,0 +1,418 @@
+{
+	"info": {
+		"_postman_id": "fb9ef676-941d-4e5e-aca7-8ded7ed2013d",
+		"name": "API Pets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44412593",
+		"_collection_link": "https://gian-2971076.postman.co/workspace/83da9655-d094-414e-8472-6fd7c20bcd0f/collection/44412593-fb9ef676-941d-4e5e-aca7-8ded7ed2013d?action=share&source=collection_link&creator=44412593"
+	},
+	"item": [
+		{
+			"name": "CRUD",
+			"item": [
+				{
+					"name": "Cadastro Pet(token)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Patrick\",\r\n  \"age\": 10,\r\n  \"weight\": 12.5,\r\n  \"color\": \"Bege\",\r\n  \"available\": true,\r\n  \"user\": \"68197d0b3a9ac6ab39be2d8d\",  \r\n  \"adopter\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/pet/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"pet",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Pet 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Patrick\",\r\n  \"age\": 10,\r\n  \"weight\": 12.5,\r\n  \"color\": \"Bege\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/pet/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"pet",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Pet 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Thor\",\r\n  \"age\": 5,\r\n  \"weight\": 20.8,\r\n  \"color\": \"Marrom\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/pet/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"pet",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Pet 3",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Amora\",\r\n  \"age\": 7,\r\n  \"weight\": 15.6,\r\n  \"color\": \"Amarelo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/pet/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"pet",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Pet 4",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Bob\",\r\n  \"age\": 12,\r\n  \"weight\": 10.7,\r\n  \"color\": \"Cinza\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/pet/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"pet",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Resgatar Pets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/pet/all",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"pet",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resgatar Pet(id)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/pet/6823e746ac6dff43c6f706a4",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"pet",
+								"6823e746ac6dff43c6f706a4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Pet(token,id)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Odin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/pet/682415567ee2ddd3fea2c5e9",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"pet",
+								"682415567ee2ddd3fea2c5e9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Pet(token, id)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/pet/682419a37ee2ddd3fea2c613",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"pet",
+								"682419a37ee2ddd3fea2c613"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuário",
+			"item": [
+				{
+					"name": "Pets do usuario(token)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/pet/mypets",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"pet",
+								"mypets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Adoção",
+			"item": [
+				{
+					"name": "Agendar visita(token, id)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/pet/schedule/682415637ee2ddd3fea2c5eb",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"pet",
+								"schedule",
+								"682415637ee2ddd3fea2c5eb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adoção pet(token, id)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Thor\",\r\n  \"age\": 3,\r\n  \"weight\": 12.5,\r\n  \"color\": \"Marrom\",\r\n  \"available\": true,\r\n  \"user\": \"68197d0b3a9ac6ab39be2d8d\",  \r\n  \"adopter\": null\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/pet/adopt/682415637ee2ddd3fea2c5eb",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"pet",
+								"adopt",
+								"682415637ee2ddd3fea2c5eb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjJjOTc4NDY5NzVjYzg0ZDQwN2Y3YyIsImlhdCI6MTc0NzExMDU1OCwiZXhwIjoxNzQ3MTk2OTU4fQ.l0Jm2cyoLeFvLeRyaMQg8bMfT4eHBVCckd1GFbrwUgk",
+			"type": "string"
+		}
+	]
+}

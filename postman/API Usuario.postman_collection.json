@@ -1,0 +1,574 @@
+{
+	"info": {
+		"_postman_id": "cb90499d-6c6b-46df-9b33-c8b6c8a750b3",
+		"name": "API Usuario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44412593",
+		"_collection_link": "https://gian-2971076.postman.co/workspace/83da9655-d094-414e-8472-6fd7c20bcd0f/collection/44412593-cb90499d-6c6b-46df-9b33-c8b6c8a750b3?action=share&source=collection_link&creator=44412593"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login Usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData;\r",
+									"try {\r",
+									"    responseData = pm.response.json();\r",
+									"} catch (error) {\r",
+									"    console.error('Erro ao parsear a resposta:', error);\r",
+									"    return;\r",
+									"}\r",
+									"\r",
+									"// Salva o token\r",
+									"if (responseData.token) {\r",
+									"    pm.environment.set(\"auth_token\", responseData.token);\r",
+									"}\r",
+									"\r",
+									"// Salva o ID do usuário, supondo que venha direto na raiz\r",
+									"if (responseData.id) {\r",
+									"    pm.environment.set(\"user_id\", responseData.id);\r",
+									"}\r",
+									"\r",
+									"console.log(\"responseData:\", responseData);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pedro@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/usuario/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"usuario",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Usuário 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"gian@unect.com.br\",\r\n    \"password\": \"456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/usuario/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"usuario",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "270"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10e-KXv6uqb8W7w9Y7fD0hjyESQyymQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 May 2025 06:03:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login realizado com sucesso!\",\n    \"id\": \"682430553a25a57862abbf3e\",\n    \"name\": \"Gian\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjQzMDU1M2EyNWE1Nzg2MmFiYmYzZSIsImlhdCI6MTc0NzIwMjYwMSwiZXhwIjoxNzQ3Mjg5MDAxfQ.saqOceQhkjFwSEI0OACL4UdxC8B932iXJrxAs8Hyq7E\"\n}"
+						},
+						{
+							"name": "Usuário 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"pedro@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/usuario/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"usuario",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "271"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10f-Bb67j96LXTxbFQYEFy3vAtughQI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 May 2025 06:03:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login realizado com sucesso!\",\n    \"id\": \"682430f23a25a57862abbf4d\",\n    \"name\": \"Pedro\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjQzMGYyM2EyNWE1Nzg2MmFiYmY0ZCIsImlhdCI6MTc0NzIwMjU5MiwiZXhwIjoxNzQ3Mjg4OTkyfQ.edX-EztAj0kt_2IFLiODDnoceEHLQx-1HUtRbio8xiE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Resgatar me(token)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/usuario/me",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"usuario",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{auth_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "CRUD",
+			"item": [
+				{
+					"name": "Cadastro Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"name\": \"Pedro\",\r\n    \"email\": \"pedro@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"phone\": \"(11)91234-9999\"  \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/usuario/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"usuario",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Usuário 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"name\": \"Gian\",\r\n    \"email\": \"gian@unect.com.br\",\r\n    \"password\": \"456789\",\r\n    \"phone\": \"(11)99999-9999\"  \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/usuario/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"usuario",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-ASojDjVo7D9c27SxqA0rVdM8ZIM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 May 2025 04:40:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Usuário criado com sucesso!\"\n}"
+						},
+						{
+							"name": "Usuário 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"name\": \"Pedro\",\r\n    \"email\": \"pedro@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"phone\": \"(11)91234-9999\"  \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/usuario/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"usuario",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-ASojDjVo7D9c27SxqA0rVdM8ZIM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 May 2025 05:58:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Usuário criado com sucesso!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Resgatar UsuarioS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/usuario/all",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"usuario",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resgatar Usuario(id)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/usuario/{{user_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"usuario",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Usuario(id)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"gian pedro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/usuario/{{user_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"usuario",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Usuario(id)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/usuario/{{user_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"usuario",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
