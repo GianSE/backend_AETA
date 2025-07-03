@@ -15,10 +15,8 @@ app.use(express.json()) //permite ler json
 
 // rotas da API
 const usuarioRoutes = require('./routes/usuarioRoutes')
-const petRoutes = require('./routes/petRoutes')
 
 app.use('/usuario', usuarioRoutes)
-app.use('/pet', petRoutes)
 
 //rota inicial / endpoint
 app.get('/', (req, res) => {

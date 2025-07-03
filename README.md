@@ -1,6 +1,6 @@
-# 🐾 API de Usuários e Pets
+# 🐾 API de Usuários
 
-Esta API permite o cadastro e autenticação de usuários, gerenciamento de pets e o processo de adoção. Abaixo está a documentação completa para utilizar todos os endpoints, incluindo exemplos de uso via Postman.
+Esta API permite o cadastro e autenticação de usuários. Abaixo está a documentação completa para utilizar todos os endpoints, incluindo exemplos de uso via Postman.
 
 ---
 
@@ -16,7 +16,7 @@ Esta API permite o cadastro e autenticação de usuários, gerenciamento de pets
 
 ```bash
 # Clone o repositório
-git clone https://github.com/GianSE/capacitacao-parte2
+git clone https://github.com/GianSE/backend_AETA
 
 # Instale as dependências
 npm install
@@ -47,8 +47,7 @@ O projeto inclui uma pasta chamada `postman/` com coleções e um ambiente confi
 
 1. Abra o Postman.
 2. Clique em **"Import"** e selecione a pasta `postman/` ou seus arquivos:
-   - `API Usuario.postman_collection.json`
-   - `API Pets.postman_collection.json`
+   - `API_Usuarios_Com_Roles.postman_collection`
    - `Localhost API.postman_environment.json`
 3. Selecione o ambiente **Localhost API** no canto superior direito do Postman.
 4. Agora você pode testar todos os endpoints com exemplos prontos e variáveis como token e ID já configuradas.
@@ -85,13 +84,15 @@ Authorization: Bearer SEU_TOKEN_JWT
 ### 📍 `POST /usuario/register`
 
 **Cadastrar novo usuário**
+Qualquer pessoa pode se registrar. O papel (role) é opcional; se não for fornecido, será 'usuario' por padrão.
 
 ```json
 {
-  "name": "Gian",
-  "email": "gian@gmail.com",
-  "password": "123456",
-  "phone": "11999999999"
+  "name": "Novo Usuário",
+  "email": "usuario@example.com",
+  "password": "senha123",
+  "phone": "11987654321",
+  "role": "usuario"
 }
 ```
 
@@ -100,94 +101,52 @@ Authorization: Bearer SEU_TOKEN_JWT
 ### 📍 `POST /usuario/login`
 
 **Autenticar usuário e obter token**
+Qualquer usuário registrado pode fazer login para obter um token de acesso.
 
 ```json
 {
-  "email": "gian@gmail.com",
-  "password": "123456"
+  "email": "usuario@example.com",
+  "password": "senha123"
 }
 ```
 
 **Resposta:** 200 OK com token JWT
 
-### 📍 `GET /usuario/all`
+### 📍 `GET /usuario/all` (Requer Token - Admin/Coordenador)
 
 **Listar todos os usuários**
+Apenas usuários com papel de admin ou coordenador podem listar todos os usuários do sistema.
 
-### 📍 `GET /usuario/:id`
+
+### 📍 `GET /usuario/:id` (Requer Token - Admin/Coordenador)
 
 **Buscar usuário por ID**
+Apenas usuários com papel de admin ou coordenador podem buscar um usuário específico pelo seu ID.
 
-### 📍 `PATCH /usuario/:id`
+### 📍 `PATCH /usuario/:id` (Requer Token - Admin)
 
 **Atualizar usuário**
+Apenas usuários com papel de admin podem atualizar os dados de outros usuários, incluindo o seu papel (role).
 
 ```json
 {
-  "name": "Maria Silva"
+  "name": "Nome do Usuário Atualizado",
+  "role": "coordenador"
 }
 ```
 
-### 📍 `DELETE /usuario/:id`
+### 📍 `DELETE /usuario/:id` (Requer Token - Admin)
 
 **Deletar usuário por ID e os pets ligados ao mesmo**
+Apenas usuários com papel de admin podem deletar outros usuários. A exclusão é permanente.
 
-### 📍 `GET /usuario/me` *(com token)*
+### 📍 `GET /usuario/me` *(com token)* (Requer Token)
 
 **Resgata o usuário dono do token**
+Qualquer usuário autenticado (admin, coordenador, usuario) pode acessar seus próprios dados.
 
 ---
 
-## 🐶 Pets
-
-### 📍 `POST /pet/register` *(com token)*
-
-**Cadastrar pet**
-
-```json
-{
-  "name": "Thor",
-  "age": 3,
-  "weight": 10,
-  "color": "Marrom"
-}
-```
-
-### 📍 `GET /pet/all`
-
-**Listar todos os pets disponíveis**
-
-### 📍 `GET /pet/mypets` *(com token)*
-
-**Listar pets do usuário logado**
-
-### 📍 `GET /pet/:id`
-
-**Buscar pet por ID**
-
-### 📍 `PATCH /pet/:id` *(com token)*
-
-**Atualizar pet**
-
-```json
-{
-  "weight": 12
-}
-```
-
-### 📍 `DELETE /pet/:id` *(com token)*
-
-**Remover pet**
-
-### 📍 `PATCH /pet/schedule/:id` *(com token)*
-
-**Agendar visita para adoção**
-
-### 📍 `PATCH /pet/adopt/:id` *(com token)*
-
-**Concluir adoção do pet**
-
----
 
 ## 📬 Exemplos de Uso no Postman
 
@@ -195,37 +154,25 @@ Authorization: Bearer SEU_TOKEN_JWT
 
 * Método: POST
 * URL: `http://localhost:3000/usuario/register`
-* Body: JSON com nome, email, senha e telefone
+* Body: JSON com nome, email, senha, telefone, role
 
 ### 🔐 Login
 
 * Método: POST
 * URL: `http://localhost:3000/usuario/login`
 * Body: JSON com email e senha
-* **Copie o token da resposta para usar nas próximas requisições.**
+* Ação: O token JWT será salvo automaticamente na variável de ambiente {{auth_token}} do Postman.
 
-### 🐶 Cadastro de Pet (com Token)
-
-* Método: POST
-* URL: `http://localhost:3000/pet/register`
-* Headers: Authorization: Bearer `TOKEN`
-* Body: JSON com dados do pet
-
-### 📆 Agendar Visita
-
-* Método: PATCH
-* URL: `http://localhost:3000/pet/schedule/{id}`
-* Headers: Authorization: Bearer `TOKEN`
-
-### 🏡 Concluir Adoção
-
-* Método: PATCH
-* URL: `http://localhost:3000/pet/adopt/{id}`
-* Headers: Authorization: Bearer `TOKEN`
-
+### 📋 Listar Usuários (Admin/Coordenador)
+* Método: GET
+* URL: `http://localhost:3000/usuario/all`
+* Autenticação: O token JWT ({{auth_token}}) é enviado automaticamente no cabeçalho Authorization.
 ---
 
 ## ✅ Considerações Finais
 
-* Use ferramentas como Postman para testar.
-* Sempre forneça o token JWT nas rotas protegidas.
+* Use ferramentas como Postman para testar. A coleção fornecida facilita o teste de diferentes papéis.
+
+* Lembre-se de fazer login com um usuário admin para testar as rotas de atualização e exclusão.
+
+* A segurança das rotas é garantida pelos middlewares checkToken e checkRole.
